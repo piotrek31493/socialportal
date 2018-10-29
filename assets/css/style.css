@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Bellota-BoldItalic';
+    src: url('../fonts/Bellota-BoldItalic.otf');
+}
+
+@font-face {
+    font-family: 'Bellota-LightItalic';
+    src: url('../fonts/Bellota-LightItalic.otf');
+}
+
+body {
+    background-color: #ecf0f1;
+}
+
+.top_bar {
+    width: 100%;
+    height: 6vh;
+    background-color: #20aae5;
+    border-bottom: 3px solid #1894ca; /* styl dolnej granicy */
+    margin: 0 0 10px 0;
+    display: inline-flex;
+    position: fixed;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    font-size: 3vh;
+    margin-top: 4.5px;
+    margin-left: 10px;
+}
+
+.logo a {
+    color: white;
+    text-shadow: white 0.3px 0.3px 0px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+nav {
+    float: right;
+    right: 1px;
+    position: absolute;
+    margin: 10px;
+    top: 0.45vh;
+}
+
+nav a{
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a i {
+    font-size: 27px;
+    margin-left: 15px;
+}
+
+nav a i:hover {
+    border-bottom: 7px solid red;
+    color: white;
+}
+
+.userName {
+    font-size: 2.3vh;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    margin-right: 30px;
+}
+
+.userName:hover {
+    border-bottom: 7px solid red;
+    color: white;
+}
+
+.wrapper {
+    margin: 0 auto;
+    top: 10vh;
+    position: relative;
+    padding: 0 10px;
+    width: 90%;
+}
+.column {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 7px;
+    box-shadow: 2px 2px 1px #d3d3d3;
+    z-index: -1; /* Kolejność stosu elementu */
+}
+
+.user_details {
+    width: 350px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.user_details_left_right {
+    width: 125px;
+    display: inline-block;
+    position: absolute;
+}
+
+.user_details img {
+    height: 125px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.main_column {
+    float: right;
+    width: 70%;
+    z-index: -1;
+    min-height: 160px;
+}
+
+.post_form {
+    width: 100%;
+}
+
+.post_form textarea {
+    width: 80%;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 5px;
+    border: 1px solid #d3d3d3;
+    font-size: 18px;
+}
+
+textarea:focus {
+    outline: 0;
+}
+/* @media only screen and (max-device-width: 600px) {
+.logo {
+display: none;
+}} */
