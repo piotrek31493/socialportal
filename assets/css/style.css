@@ -126,10 +126,30 @@ nav a i:hover {
     margin-right: 5px;
     border: 1px solid #d3d3d3;
     font-size: 18px;
+    padding: 5px;
 }
 
 textarea:focus {
     outline: 0;
+}
+
+.post_form input[type="submit"] {
+    width: 10%;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    background-color: #3498db;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    color: #fff;
+    text-shadow: white 0.3px 0.3px 0px;
+    font-size: 90%;
+    position: absolute;
+    outline: 0;
+    margin: 0;
+}
+
+.post_form input[type="submit"]:active {
+    padding: 5px 4px 4px 5px;
 }
 /* @media only screen and (max-device-width: 600px) {
 .logo {
