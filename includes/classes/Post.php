@@ -45,7 +45,7 @@ class Post {
 
         while($row = mysqli_fetch_array($data)) {
             $id = $row['id'];
-            $bosy = $row['body'];
+            $body = $row['body'];
             $added_by = $row['added_by'];
             $date_time = $row['date_added'];
 
@@ -54,10 +54,10 @@ class Post {
             } else {
                 $user_to_obj = new User($con, $row['user_to']);
                 $user_to_name = $user_to_obj->getFirstAndLastName();
-                $user_to = "<a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>";
+                $user_to = "to <a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>";
             }
 
-            $added_by_obj = new User($con, $added_by);
+            $added_by_obj = new User($this->con, $added_by);
             if($added_by_obj->isClosed()) {
                 continue;
             }
@@ -65,15 +65,90 @@ class Post {
             $user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE
             username='$added_by'");
             $user_row = mysqli_fetch_array($user_details_query);
+            $first_name = $user_row['first_name'];
+            $last_name = $user_row['last_name'];
+            $profile_pic = $user_row['profile_pic'];
 
             $date_time_now = date("Y-m-d H:i:s");
             $start_date = new DateTime($date_time); // czas Posta
             $end_date = new DateTime($date_time_now); // obecny czas
             $interval = $start_date->diff($end_date); // rożnica pomiędzy datami
             if($interval->y >= 1) {
+                if($interval == 1) {
+                    $time_message = $interval->y . " rok temu";
+                } else if ($interval == 2 || $interval == 3 || $interval == 4) {
+                    $time_message = $interval->y . " lata temu";
+                } else {
+                    $time_message = $interval->y . " lat temu"; }
+            } else if($interval->m >= 1) {
+                if($interval->d == 0) {
+                    $days = " temu";
+                } else if ($interval->d == 1) {
+                    $days = $interval->d . " dzień temu";
+                } else {
+                    $days = $interval->d . " dni temu";
+                }
+                if($interval->m == 1) {
+                    $time_message = $interval->m . " miesiąc". $days;
+                } else if($interval->m == 2 || $interval->m == 3 || $interval->m == 4) {
+                    $time_message = $interval->m . " miesiące". $days;
+                } else {
+                    $time_message = $interval->m . " miesięcy". $days;
+                }
 
+            } else if ($interval->d >= 1) {
+                if ($interval->d == 1) {
+                   $time_message = "wczoraj";
+               } else {
+                   $time_message = $interval->d . " dni temu";
+               }
             }
-        }
+            else if($interval->h >= 1) {
+                if($interval->h == 1) {
+                    $time_message = $interval->h . " godzinę temu";
+                } else if($interval->h == 2 || $interval->h == 3 || $interval->h == 4) {
+                    $time_message = $interval->h . " godziny temu";
+                } else {
+                    $time_message = $interval->h . " godzin temu";
+                }
+            }
+            else if($interval->i >= 1) {
+                if($interval->i == 1) {
+                    $time_message = $interval->i . " minutę temu";
+                } else if($interval->i == 2 || $interval->i == 3 || $interval->i == 4) {
+                    $time_message = $interval->i . " minuty temu";
+                } else {
+                    $time_message = $interval->i . " minut temu";
+                }
+            }
+            else {
+                if($interval->s == 1) {
+                    $time_message = $interval->s . " sekundę temu";
+                } else if($interval->s == 2 || $interval->s == 3 || $interval->s == 4) {
+                    $time_message = $interval->s . " sekundy temu";
+                } else {
+                    $time_message = $interval->s . " sekund temu";
+                }
+            }
 
+
+            $str .= "<div class='status_post'>
+								<div class='post_profile_pic'>
+									<img src='$profile_pic' width='50'>
+								</div>
+
+								<div class='posted_by' style='color:#acacac;'>
+									<a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+								</div>
+								<div id='post_body'>
+									$body
+									<br>
+								</div>
+
+							</div>
+							<hr>";
+        }
+        echo $str;
+    }
 }
 ?>
