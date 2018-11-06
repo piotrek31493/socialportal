@@ -104,7 +104,7 @@ if(isset($_POST['register_button'])) {
 															   '$password',
 															   '$date',
 															   '$profile_pic',
-															   '0', '0', 'no', '') ");
+															   '0', '0', 'no', ',') ");
 
 		array_push($error_array, "<span style='color: #14C800;'>Udało ci się zarejestrować możesz teraz korzystać z portalu</span>");
 

@@ -29,13 +29,16 @@ if(isset($_POST['post'])) {
 			<textarea name="post_text" id="post_text" placeholder="Napisz coś ciekawego"></textarea>
 			<input type="submit" name="post" id="post_button" value="Opublikuj">
 			<br>
+			<hr>
 		</form>
 
 		<?php
-			$post = new Post($con, $userLoggedIn);
+			$post= new Post($con, $userLoggedIn);
 			$post->loadPostFriends();
 		?>
+
 	</div>
+
 
 </div>
 </body>
